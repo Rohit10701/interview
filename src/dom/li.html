@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <input type="text" id="itemInput" placeholder="Enter item...">
+        <button id="addBtn">Add Item</button>
+        <ul id="itemList">
+        </ul>
+    </div>
+</body>
+<script>
+  const addButton = document.getElementById("addBtn")
+  const ulList = document.getElementById("itemList")
+  const input = document.getElementById("itemInput")
+
+  addButton.addEventListener("click", (event) => {
+    const li = document.createElement("li")
+    li.textContent = input.value
+    ulList.appendChild(li)
+    input.value = ""
+  })
+
+  ulList.addEventListener("click", (event) => {
+    if (event.target.tagName === 'LI') {
+      event.target.remove();
+    }
+  });
+  
+  document.addEventListener("DOMContentLoaded", async () => {
+      console.log("DOM is ready, fetching data...");
+      await fetchInitialData();
+  });
+
+async function fetchInitialData() {
+    try {
+        const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5');
+        const data = await res.json();
+        renderList(data);
+    } catch (err) {
+        console.error("Fetch failed", err);
+    }
+}
+
+function renderList(items) {
+    const ul = document.getElementById("itemList");
+    items.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item.title;
+        ul.appendChild(li);
+    });
+}
+  
+</script>
+</html>

@@ -15,11 +15,10 @@ import {pipeWrapper} from "./src/closures/pipe"
 
 
 
-// this, bind, apply
+// this, bind, apply -> Done
 // prototype
-// map, flilter, reduce, every, some, find
-// Symbol
-// Symbol enum
+// map, flilter, reduce, every, some, find -> Done
+// Symbol, Symbol enum -> Done
 // Generator function
 // weakmap, set
 // DOM, query, class, getelementid, attribute, dangeriouslyhtml
